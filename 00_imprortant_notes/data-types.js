@@ -2,8 +2,8 @@
 #   JavaScript is Dynamically-typed languages
 
 - example 
-    const variable = 100; => this is dynamic
-    const variable:number = 100; => this is static  
+    const canBeAnything = 100; => this is dynamic // this 'canBeAnything' can hold any type of value
+    const canBeNum:number = 100; => this is static // this 'canBeNumber' can hold only number type value
 
     any language which askes to specify the type of an object or a variable (line 6) is static (strict) while language which can guess type without specifying (line 5) is dynamic (flexible)
 */
