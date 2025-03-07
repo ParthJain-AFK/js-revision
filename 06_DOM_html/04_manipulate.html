@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(43, 39, 39);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="lang">
+        <li>js</li>
+    </ul>
+</body>
+<script>
+
+    /* add */
+
+    // appendChild is always preferd for the optimization.. user innerHtml only in necessary cases
+    function addLang(LanName) {
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(`${LanName}`))
+        document.querySelector('.lang').appendChild(li)
+    }
+    addLang('py')
+    addLang('tsx')
+    addLang('c++')
+
+    /* replace */
+
+    // so we just create a new element and then ".replaceWith" the old element we want want instead of changing it
+    const secLang = document.querySelector("li:nth-child(2)")
+    const newLi = document.createElement('li')
+    newLi.textContent = 'mojo'
+    // console.log(newLi);
+    secLang.replaceWith(newLi)
+
+    // or u can just 
+    const firstLang = document.querySelector('li:first-child')
+    console.log(firstLang);
+    firstLang.outerHTML = '<li>C#</li>'
+    firstLang.innerHTML = 'C#'
+    // both are not opti way to do it
+
+    /* remove */
+    document.querySelector('li:last-child').remove()
+</script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body> <!-- div.day*7 try this -->
+    <div class="parent">
+        <div class="day">Mo</div>
+        <div class="day">Tu</div>
+        <div class="day">We</div>
+        <div class="day">Thu</div>
+        <div class="day">Fr</div>
+        <div class="day">Sa</div>
+        <div class="day">Su</div>
+    </div>
+</body>
+
+<script>
+    const parent = document.querySelector('.parent')
+    // console.log(parent);
+    // console.log(parent.children);
+    // console.log(parent.children[0]);
+    // console.log(parent.firstElementChild);
+    // console.log(parent.lastElementChild);
+
+
+    // we can do the same thing as this but from child to parent element
+
+    const day = document.querySelector('.day')
+    // console.log(day);
+    // console.log(day.parentElement);
+    const tu = day.nextElementSibling
+    // console.log(tu);
+    // console.log(tu.previousElementSibling);
+
+
+    // now we know that parent is not an array but is simular to an array and we can use forEach it or convert it into an array. by using querySelectorAll and Array.from.
+
+    for (let i = 0; i < parent.children.length; i++) {
+        parent.style.background = 'blue'
+        const small = parent.children[i].innerHTML
+        parent.children[i].innerHTML = small.toLocaleUpperCase()
+        // console.log(parent.children[i].innerHTML);
+    }
+
+
+    // console.log(parent.children.length);
+    // console.log(parent.length);
+
+
+    parent.firstElementChild.style.color = 'pink'
+    tu.innerHTML = 'tuesday'
+
+
+
+</script>
+
+</html>

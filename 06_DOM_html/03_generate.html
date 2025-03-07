@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(20, 20, 20);
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    const newDiv = document.createElement('div')
+    console.log(newDiv);
+
+    newDiv.className = 'mainDiv'
+    newDiv.id = 'D1'
+
+    // now there is another way u can do this. and this one allows to add attribute which done not have keyword like .id and .className
+    newDiv.setAttribute('title', 'is main div')
+
+    newDiv.style.background = 'cornsilk'
+    newDiv.style.color = 'red'
+
+    const text = document.createTextNode('hellow, World')
+    newDiv.appendChild(text)
+
+    document.body.appendChild(newDiv)
+    // now u can do either of this.. in the case below any elements will be deleted and replaced by new
+    
+    // document.body.innerHTML = '<div class="mainDiv" id="D1" title="is main div" style="background: cornsilk; color: red;">GoodBye, World</div>'
+
+</script>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document -> DOM</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .hOne {
+            height: large;
+            color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-black">
+        <h1 id="header" class="hOne">DOM</h1>
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+
+        <ul>
+            <li class="liss">1</li>
+            <li class="liss">2 </li>
+            <li class="liss">3</li>
+            <li class="liss">4</li>
+            <li class="liss">5</li>
+        </ul>
+    </div>
+    <script src=""> // inside this is where we can write js. or we can just import js fline
+
+        document.querySelector('#header').innerHTML = "<span>hellow world</span>"
+        document.querySelector('.para').innerHTML = 'hellow world'
+        /*  go to the page and then search and then find the diffrence between them 
+            document.querySelector('#header').innerHTML
+            document.querySelector('#header').innerText
+            document.querySelector('#header').textContent
+            */
+
+        const green = document.querySelector('p')
+        green.style.background = 'pink'
+
+        const list = document.querySelectorAll('li')  // this is not an array
+        // list[0].style.color = 'red'
+        list.forEach((l) => {
+            l.style.background = 'blue'
+            l.style.color = 'red'
+            l.innerHTML = 'empty'
+        })
+
+        const l = document.getElementsByClassName('liss')
+        console.log(l); // this is not an array
+
+        const lA = Array.from(l)
+        console.log(lA);
+
+        lA.map((l) => { // u can use forEach too
+            l.style.fontSize = '20px'
+            l.style.margin = '20px'
+            l.style.width = '50px'
+        })
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+<!--
+                 window
+                   |
+                Document
+                   |
+                  HTML
+                   |
+                /   |   \
+               /    |    \
+              /     |     \
+            head  script  body
+
+head -> { title -> (text node) , meta -> (attribute) }
+
+body |
+     v   
+     div -> attribute 
+     /\  
+    /  \
+   /    \
+  h1    p -> attribute
+  \     /
+   \   /
+    \ /
+     |
+     text node 
+     
+script -> empty(u can put ur js code here)
+-->
