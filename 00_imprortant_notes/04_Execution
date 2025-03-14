@@ -1,0 +1,148 @@
+# JavaScript
+
+    The working of the JavaScript works on three phases:
+    1. Global Execution Context
+    2. Memory phase / Creation phase
+    3. Execution phase
+
+    --Phase 1: Global Execution Context
+    The value of `this` keyword is set to Global Execution Context (which is an empty Object in NODE environment, & window object in browser environment)
+
+    --Phase 2: Memory phase
+    During this phase, JS engine scans the code and assigns the initial values for the variables , functions, etc.. For variables they are 'undefined' and for functions they are set to their function definition
+        function definition meaning 
+            the function name 
+            its parameter
+            and the code inside it
+
+    --Phase 3: Execution phase
+    After the creation (Memory) phase is completed, the execution phase begins where actual values of the variables are set. And when the functions are called it creates a new 'Function Execution' context which consists of two phases (they works same as explained above but only for the particular function scope):
+    1. Memory phase 
+    2. Execution phase 
+        The return value of the 'Function Execution' context is passed to the Global Execution Context
+
+    *** IN GRAPH MANNER ***
+    {} -> the file of code
+
+        {}
+        |
+        |-> Global Execution Context 
+        |
+        |-> Function Execution Context
+        |
+        |-> Eval Execution Context 
+            (read document ur self || ill add infor on this later on)
+
+    ----------------
+
+        {}
+        |
+        |-> Memory *creation phase*
+        |
+        |-> Execution phase
+
+    Memory creation phase
+
+
+
+    ____ will explain with code____
+    L0    {
+    L1     let ten = 10;
+    L2     let six = 6;
+    L3     function sum(num1,num2) {
+    L4        let total = num1 + num2
+    L5        return total
+    L6     }   
+    L7     let sum1 = sum(ten,six)
+    L8     let sum2 = sum(3,7)
+    L9    }
+
+        -> first Global execution phase
+        |
+        -> Memory phase
+        |    | ten = undefined (L1)
+        |    | six = undefined (L2)
+        |    | sum = definition (L3)
+        |    | sum1 = undefined (L7)
+        |    | sum2 = undefined (L8)
+        |
+        |-> execution phase
+            | ten = 10;
+            |
+            | six = 6;
+            |
+            | we are skipping the function 
+                because it hasnt be called yet
+            |
+            | sum1 = sum(ten,six) [ now that the function has been called]
+            |        |
+            |        |-> Memory phase (new variables
+            |        |    environment + execution thread)
+            |        |    |
+            |        |    | num1 = undefined (L4)
+            |        |    | num2 = undefined (L4)
+            |        |    | total = undefined (L5)
+            |        |    
+            |        |-> execution context (thread)
+            |        |    | num1 = ten -> 10
+            |        |    | num2 = six -> 6
+            |        |    | total = 16 -> 10 + 6 -> num1 + num2
+            |        |    | returns total to Global execution content
+            |        |
+            |        |-> its deleted (to clear pollution)
+            |
+            | sum2 = sum(3,7) [ now that the function has been called]
+            |        |
+            |        |-> Memory phase (new variables
+            |        |    environment + execution thread)
+            |        |    |
+            |        |    | num1 = undefined (L4)
+            |        |    | num2 = undefined (L4)
+            |        |    | total = undefined (L5)
+            |        |    
+            |        |-> execution context (thread)
+            |        |    | num1 = 3
+            |        |    | num2 = 7
+            |        |    | total = 10 -> 3 + 7
+            |        |    | returns total to Global execution content
+            |        |
+            |        |-> its deleted (to clear pollution)
+
+
+    --------- The Case when Nested Function Are Called ---------
+
+        fun1() {
+            fun2
+        }
+        fun2() {fun3}
+        fun3() {console.log('hi')}
+
+        this is how its going to happen
+        they will follow the steps
+        {
+            -> fun1{
+                | -> fun2{ 
+                    | -> fun3 {
+                        }
+                    } 
+                }
+        }
+        they will then delete them self in LIFO => Last in first out
+
+    -> |   {
+        |       -> fun1{
+        |            | -> fun2{ 
+        |                       fun3 has been deleted
+        |                } 
+        |            }
+        |    }
+        |
+    -> |   {
+        |       -> fun1{ 
+        |               fun2 has been deleted
+        |            }
+        |    }
+        |
+    -> |   {
+        |           fun1 has been deleted  
+        |    }

@@ -1,0 +1,175 @@
+<!-- 
+attachEvent() -> used in the times of Internet Explorer
+jQuery an js library
+
+
+learn all this ---- 
+type, timestamp, defaultPrevented
+target, toElement, srcElement, currentTarget,
+clientX, clientY, screenX, screenY
+altkey, ctrlkey, shiftkey, keyCode
+
+"what is {the name} in addEventListener js" search this on google
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+<style>
+    img {
+        height: 200px;
+    }
+
+    body {
+        background-color: rgb(215, 234, 250);
+    }
+
+    a {
+        color: brown;
+        font-size: larger;
+    }
+</style>
+
+<body>
+    <div id='div'>
+        <ul id="images">
+
+            <li><img src="https://i.pinimg.com/736x/1e/9f/7f/1e9f7f352b9d60286bfdb92207d512d8.jpg" id="Tom" alt="Tom">
+                <!-- onclick="console.log('clicked on Tom')" this is good for testing only. u wont wnat to scale this to 50+ lines instead do line 60 -->
+            </li>
+
+            <li><img src="https://i.pinimg.com/474x/1d/10/56/1d10569ed606f3ca1cb5bc1f4b88695c.jpg" id="Bear" alt="Bear">
+            </li>
+
+            <li><img src="https://i.pinimg.com/474x/3e/5b/86/3e5b862a1008813bd991a2465645f22b.jpg" id="Ben" alt="Ben">
+            </li>
+
+            <li><img src="https://i.pinimg.com/736x/8e/ca/57/8eca57a00f5974c875a0952dc52841c4.jpg" id="itachi"
+                    alt="itachi">
+            </li>
+
+            <li><img src="https://i.pinimg.com/474x/5d/96/50/5d96502514c95d7c1d284a00ef444014.jpg" id="baymax"
+                    alt="baymax"></li>
+
+            <li><a href="https://youtu.be/sOuKeVuej9E?si=gL5KH_-oXWVJOc1y" id="cheat">Cheat Code</a></li>
+
+        </ul>
+    </div>
+</body>
+
+<script>
+
+    // ch1
+    /*
+            document.getElementById('Tom').onclick = function () {
+                console.log("Tom clicked")
+            }
+        we will have to do this for everything and this isnt best way to do this becasue it lacks many functions
+    */
+
+    // ch2
+    /*
+        document.getElementById('images').addEventListener('click', (e) => {
+        console.log(e); // this e gives uss soo many informations. browsers (ex - the size of tab) , environmental  (ex - where was mouse clicked X-Y axis)  go to line 6
+        console.log("clicked inside the ul");
+        }, false)
+    */
+
+    // ch3
+    /*
+        there are total of three input inside of 'addEventListener' one is the name of the event and one is the function and one is boolean. this bubbling and capturing
+        false which is defaultly set is bubbling and true which we have to set our self is capturing
+
+    // in bubbling
+        //     grandchild -> child -> parent (inside to outside) even Propagation
+    
+            document.getElementById('div').addEventListener('click', function (e) {
+                console.log("clicked inside the div 3"); // this will be loged third
+    
+            }, false)
+            document.getElementById('images').addEventListener('click', function (e) {
+                console.log("clicked inside the UL 2"); // this will be loged second
+    
+            }, false)
+            document.getElementById('Ben').addEventListener('click', function (e) {
+                console.log("Ben clicked 1"); // this will be loged first
+            }, false)
+    
+    
+    // in capturing
+        //     parent -> child -> grandchild (outside to inside)
+    
+            document.getElementById('div').addEventListener('click', function (e) {
+                console.log("clicked inside the div 3"); // this will be loged third
+    
+            }, true)
+            document.getElementById('images').addEventListener('click', function (e) {
+                console.log("clicked inside the UL 2"); // this will be loged second
+    
+            }, true)
+            document.getElementById('Ben').addEventListener('click', function (e) {
+                console.log("Ben clicked 1"); // this will be loged first
+            }, true)
+    
+    */
+
+    // ch4
+    /*
+        // in case we have event on parent or child and we dont want that event to happen(bubbling or capturing) along side the child/parent event like down below  
+        document.getElementById('baymax').addEventListener('click', function (e) {
+            console.log("baymax clicked");
+            e.stopPropagation() // in that case we can use this.. stopPropagation an inbuild funtion inside of 'e' it stops all of Propagation be it bubbling or capturing
+        })
+        document.getElementById('div').addEventListener('click', function (e) {
+            console.log("div clicked");
+        })
+    */
+
+    // ch5
+    /*
+        document.getElementById('cheat').addEventListener('click', function (e) {
+            e.preventDefault() // this here stops all of the Default functions. like when clicked on <a> it lead to other (provided) link. thats the default function of <a>
+            console.log("cheat linked clicked");
+        }, false)
+    */
+
+    // ch6 
+    document.querySelector('#images').addEventListener('click', function (e) {
+        console.log(e.target.tagName)
+        // in side the div there is Ul , li , img , a
+
+        if (e.target.tagName === 'IMG') {
+            // only when we click on image we will get tagName IMG. 
+
+            console.log(e.target.id); // we are asking the id of object we clicked is correct for conformation
+
+            let removeIt = e.target.parentNode // when then take its direct parent and remove it
+
+            console.log(removeIt);
+            removeIt.remove()
+        }
+
+        if (e.target.tagName === 'A') {
+            // only when we click on image we will get tagName A
+            console.log(e.target.id,);
+            console.log('link is not available');
+
+            e.preventDefault()
+        }
+
+        if (e.target.tagName === 'UL' || e.target.tagName === 'LI') {
+            console.log('dont be smart');
+            // confirm("confirm");
+            // alert("alert");
+            // prompt("prompt");
+        }
+
+    }, false)
+</script>
+
+</html>

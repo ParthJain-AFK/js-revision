@@ -1,0 +1,60 @@
+- default
+    # JavaScript 
+        Synchronous
+        single threaded 
+
+    # Execution Context 
+        one line at a time 
+            |
+            |> line one
+            |
+            |> line two
+            |
+            | Call Stack   Memory Heap
+    each code(function , operation) waits for the previous one to complete before running
+
+
+
+# Block Code -- Non Block Code  
+    Block Code          --              Non Block Code  
+        |                                   |
+        block the flow                      Dose not block flow
+        of program                          of program
+        |                                   |
+        read file sync                      Read file Async
+
+    # Block code (Synchronous Execution)
+        each line(code) waits for the previous line to finish before running
+    
+        -One operation at a time (single-threaded).
+        -Execution halts until the current task is completed.
+        -Easier to debug due to predictable execution order.
+
+        -example code
+            console.log("Step 1");            "Step 1" is printed.
+            for (let i = 0; i < 5; i++) {     loop run five times
+                console.log(`Step ${i + 2}`); blocking futher
+            }                                 code from running
+            console.log("Finished");          "Finished" is printed
+
+
+
+    # Non-Block Code
+        
+        many line(code , function , operation) can run at same time and it dose not requires the wait for other task to complete before starting next one
+        
+        -Does not stop execution for lengthy tasks.
+        -Uses callbacks, Promises, or async/await to handle tasks.
+        -Improves performance, especially in handling external data.
+
+        -example code
+            console.log("Step 1");                  "Step 1" is printed.
+            setTimeout(() => {
+                console.log("Step 3 (Delayed)");    "Step 2" is printed immediately
+            },                                      After 2 seconds,
+            2000);                                  "Step 3 (Delayed)"
+            console.log("Step 2")                   is printed.
+
+
+
+go to the ./images/05_JavaScript.png 
