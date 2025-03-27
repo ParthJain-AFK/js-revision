@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>setting timeout , clear timeout , set interval</h1>
+    <button id="change">change</button>
+    <button id="stop">dont change</button>
+</body>
+
+<script>
+    // setTimeOut is like saying after specified time (in mili sec) i want this function to run.. it runs only one time    
+    // setTimeout(() => { // function () {
+    //     console.log('1 sec equals to 1000 mili sec');
+    // }, 3000)
+
+    // setInterval(() => console.log(`${1}`), 2500) // setInterval is like saying after every specified time (in mili sec) i want this function to run.. it runs indefinity.
+
+    function explain() {
+        console.log('in case we have an global function we dont need to call then function in these events. we can just need to give "refrence" handdler to the funtion');
+    }
+
+    const oneS = setInterval(explain, 2000); // its like a loop. but it run indefinitely
+    const expl = setTimeout(explain, 2000)
+
+    clearInterval(oneS) // this clears the interval which is referred to using a variable
+    clearTimeout(expl) // this clears the Timeout which is referred to using a variable
+
+    let changeHtml
+
+    function Name(name) {
+        console.log(`Hi ${name}`);
+
+    }
+    let sayHi
+    document.getElementById('change').addEventListener('click', (e) => {
+        document.querySelector('body').style.backgroundColor = 'pink'
+        console.log('changing backGround and Html');
+
+        changeHtml = setTimeout(() => {
+            document.querySelector('h1').innerHTML = 'Used them'
+        }, 1500)
+
+        sayHi = setInterval(Name, 1000, 'Myself');
+    })
+
+    document.getElementById('stop').addEventListener('click', (e) => {
+        console.log('stoped all time functions');
+        clearTimeout(changeHtml)
+        clearInterval(sayHi)
+    })
+
+</script>
+
+</html>

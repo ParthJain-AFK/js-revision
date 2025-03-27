@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            background-color: rgb(0, 0, 0);
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            color: white;
+        }
+
+        .block-div {
+            display: block;
+        }
+
+
+        .keyboard {
+            display: flex;
+            flex-direction: row;
+            /* align-items: center; */
+            justify-content: center;
+            background: rgb(255, 255, 255);
+            /* border: 3px solid #444; */
+            /* padding: 10px; */
+            /* border-radius: 10px; */
+            width: 100%;
+            /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); */
+            height: fit-content;
+        }
+
+        .key {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #eee;
+            color: #333;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 2px;
+            width: 50px;
+            height: 50px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            user-select: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        .keyPressed {
+            width: 100%;
+            display: block;
+            white-space: pre-wrap;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .height {
+            height: 112px;
+        }
+
+        .key.wide {
+            width: 100px;
+        }
+
+        .extra-wide {
+            width: 400px;
+        }
+
+        .arrowPad {
+            background-color: rgb(255, 192, 203);
+            display: inline-flex;
+        }
+
+        .lastkey {
+            background-color: rgb(255, 192, 203);
+            display: inline-flex;
+            width: 60px;
+            margin: 0px;
+            padding-top: 60px;
+        }
+
+        .funKey {
+            margin-bottom: 193px;
+        }
+
+        .up {
+            display: flex;
+            background-color: beige;
+            margin-left: 35%;
+
+        }
+
+        .keyAlp {
+            background-color: pink;
+        }
+
+        .numPad {
+            background-color: rgb(255, 192, 203);
+            padding-top: 60px;
+        }
+
+        .inline {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: #eee;
+            color: #333;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin: 2px;
+            width: 50px;
+            height: 50px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            user-select: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .topRow {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+
+        #Escape {
+            margin-right: 75px;
+        }
+
+        .Shift {
+            width: 135px;
+        }
+
+        .Enter {
+            width: 115px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" class="block-div">
+        <div class="keyboard">
+            <div class="keyAlp">
+                <div class="row">
+                    <p id="Escape" class="key topRow">Esc</p>
+                    <p id="F1" class="key">F1</p>
+                    <p id="F2" class="key">F2</p>
+                    <p id="F3" class="key">F3</p>
+                    <p id="F4" class="key topRow">F4</p>
+                    <p id="F5" class="key">F5</p>
+                    <p id="F6" class="key">F6</p>
+                    <p id="F7" class="key">F7</p>
+                    <p id="F8" class="key topRow">F8</p>
+                    <p id="F9" class="key">F9</p>
+                    <p id="F10" class="key">F10</p>
+                    <p id="F11" class="key">F11</p>
+                    <p id="F12" class="key">F12</p>
+
+                </div>
+
+                <!-- Number Row -->
+                <div class="row">
+                    <p id="Backquote" class="key">~</p>
+                    <p id="Digit1" class="key">1</p>
+                    <p id="Digit2" class="key">2</p>
+                    <p id="Digit3" class="key">3</p>
+                    <p id="Digit4" class="key">4</p>
+                    <p id="Digit5" class="key">5</p>
+                    <p id="Digit6" class="key">6</p>
+                    <p id="Digit7" class="key">7</p>
+                    <p id="Digit8" class="key">8</p>
+                    <p id="Digit9" class="key">9</p>
+                    <p id="Digit0" class="key">0</p>
+                    <p id="Minus" class="key">-</p>
+                    <p id="Equal" class="key">=</p>
+                    <p id="Backspace" class="key wide">Backspace</p>
+                </div>
+
+                <!-- Tab and Letter Row -->
+                <div class=" row">
+                    <p id="Tab" class="key wide">Tab</p>
+                    <p id="KeyQ" class="key">Q</p>
+                    <p id="KeyW" class="key">W</p>
+                    <p id="KeyE" class="key">E</p>
+                    <p id="KeyR" class="key">R</p>
+                    <p id="KeyT" class="key">T</p>
+                    <p id="KeyY" class="key">Y</p>
+                    <p id="KeyU" class="key">U</p>
+                    <p id="KeyI" class="key">I</p>
+                    <p id="KeyO" class="key">O</p>
+                    <p id="KeyP" class="key">P</p>
+                    <p id="BracketLeft" class="key">[</p>
+                    <p id="BracketRight" class="key">]</p>
+                    <p id="Backslash" class="key">\ |</p>
+                </div>
+
+                <!-- Caps Lock and Letter Row -->
+                <div class="row">
+                    <p id="CapsLock" class="key wide">Caps Lock</p>
+                    <p id="KeyA" class="key">A</p>
+                    <p id="KeyS" class="key">S</p>
+                    <p id="KeyD" class="key">D</p>
+                    <p id="KeyF" class="key">F</p>
+                    <p id="KeyG" class="key">G</p>
+                    <p id="KeyH" class="key">H</p>
+                    <p id="KeyJ" class="key">J</p>
+                    <p id="KeyK" class="key">K</p>
+                    <p id="KeyL" class="key">L</p>
+                    <p id="Semicolon" class="key">;</p>
+                    <p id="Quote" class="key">'</p>
+                    <p id="Enter" class="key Enter">Enter</p>
+                </div>
+
+                <!-- Shift and Symbol Row -->
+                <div class="row">
+                    <p id="LeftShift" class="key Shift">Shift</p>
+                    <p id="KeyZ" class="key">Z</p>
+                    <p id="KeyX" class="key">X</p>
+                    <p id="KeyC" class="key">C</p>
+                    <p id="KeyV" class="key">V</p>
+                    <p id="KeyB" class="key">B</p>
+                    <p id="KeyN" class="key">N</p>
+                    <p id="KeyM" class="key">M</p>
+                    <p id="Comma" class="key">,</p>
+                    <p id="Period" class="key">.</p>
+                    <p id="Slash" class="key">/</p>
+                    <p id="ShiftRight" class="key Shift">Shift</p>
+                </div>
+
+                <!-- Control Row -->
+                <div class="row">
+                    <p id="LeftControl" class="key">Ctrl</p>
+                    <p id="MetaLeft" class="key">Win</p>
+                    <p id="AltLeft" class="key">Alt</p>
+                    <p id="Spacebar" class="key extra-wide">Space</p>
+                    <p id="AltRight" class="key">Alt</p>
+                    <p id="ContextMenu" class="key wide">Menu</p>
+                    <p id="RightControl" class="key wide">Ctrl</p>
+                </div>
+            </div>
+            <!-- Top Row -->
+
+            <div class="arrowPad">
+                <div>
+                    <div class="funKey">
+                        <p id="PrintScreen" class="key inline">PrtSc</p>
+                        <p id="ScrollLock" class="key inline">ScrLk</p>
+                        <p id="Pause" class="key inline">Pause</p>
+                    </div>
+
+                    <p id="ArrowUp" class="key up">↑</p>
+                    <p id="ArrowLeft" class="key inline">←</p>
+                    <p id="ArrowDown" class="key inline">↓</p>
+                    <p id="ArrowRight" class="key inline">→</p>
+                </div>
+            </div>
+
+            <div class="numPad">
+
+                <div class="row">
+                    <p id="NumLock" class="key">Num Lock</p>
+                    <p id="NumpadDivide" class="key">/</p>
+                    <p id="NumpadMultiply" class="key">*</p>
+
+                </div>
+                <div class="row">
+                    <p id="Numpad7" class="key">7</p>
+                    <p id="Numpad8" class="key">8</p>
+                    <p id="Numpad9" class="key">9</p>
+
+                </div>
+                <div class="row">
+                    <p id="Numpad4" class="key">4</p>
+                    <p id="Numpad5" class="key">5</p>
+                    <p id="Numpad6" class="key">6</p>
+
+                </div>
+                <div class="row">
+                    <p id="Numpad1" class="key">1</p>
+                    <p id="Numpad2" class="key">2</p>
+                    <p id="Numpad3" class="key">3</p>
+                </div>
+                <div class="row">
+                    <p id="Numpad0" class="key wide">0</p>
+                    <p id="NumpadDecimal" class="key">.</p>
+                </div>
+
+            </div>
+
+            <div class="lastkey">
+                <div class="row">
+                    <p id="NumpadSubtract" class="key">-</p>
+                    <p id="NumpadAdd" class="key height">+</p>
+                    <p id="NumpadEnter" class="key height">Enter</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="keyPressed">
+        </div>
+</body>
+
+<script src="Words.js"></script>
+
+</html>

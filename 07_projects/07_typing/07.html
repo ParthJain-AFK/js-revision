@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: black;
+            color: white;
+        }
+
+        #text-display {
+            font-size: 20px;
+            margin-bottom: 20px;
+            background-color: black;
+            color: white;
+        }
+
+        #typing-area {
+            width: 80%;
+            height: 100px;
+            font-size: 18px;
+            background-color: black;
+            color: white;
+        }
+
+        #timer,
+        #wpm {
+            font-size: 18px;
+            margin-top: 10px;
+            background-color: black;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Typing Speed Test</h1>
+    <p id="text-display">The quick brown fox jumps over the lazy dog.</p>
+    <textarea id="typing-area" placeholder="Start typing here..."></textarea>
+    <p id="timer">Time: 0s</p>
+    <p id="wpm">WPM: 0 | Accuracy: 100%</p>
+    <button id="restart">Restart</button>
+</body>
+<script>const textDisplay = document.getElementById("text-display");
+    const typingArea = document.getElementById("typing-area");
+    const timerElement = document.getElementById("timer");
+    const wpmElement = document.getElementById("wpm");
+    const restartButton = document.getElementById("restart");
+
+    const originalText = textDisplay.innerText;
+    let startTime, interval;
+
+    // Function to start the timer
+    function startTimer() {
+        if (startTime) return;
+        startTime = new Date();
+
+        interval = setInterval(() => {
+            let elapsedTime = Math.floor((new Date() - startTime) / 1000);
+            timerElement.innerText = `Time: ${elapsedTime}s`;
+            calculateWPM();
+        }, 1000);
+    }
+
+    // Function to calculate WPM and Accuracy
+    function calculateWPM() {
+        const userInput = typingArea.value;
+        const wordsTyped = userInput.split(/\s+/).filter(word => word !== "").length;
+        const elapsedTime = (new Date() - startTime) / 60000; // Convert to minutes
+
+        const wpm = elapsedTime > 0 ? Math.round(wordsTyped / elapsedTime) : 0;
+
+        // Accuracy Calculation
+        let correctChars = 0;
+        for (let i = 0; i < userInput.length; i++) {
+            if (userInput[i] === originalText[i]) {
+                correctChars++;
+            }
+        }
+        const accuracy = Math.round((correctChars / originalText.length) * 100);
+
+        wpmElement.innerText = `WPM: ${wpm} | Accuracy: ${accuracy}%`;
+    }
+
+    // Event listener for typing
+    typingArea.addEventListener("input", () => {
+        startTimer();
+        calculateWPM();
+    });
+
+    // Restart button
+    restartButton.addEventListener("click", () => {
+        clearInterval(interval);
+        startTime = null;
+        timerElement.innerText = "Time: 0s";
+        wpmElement.innerText = "WPM: 0 | Accuracy: 100%";
+        typingArea.value = "";
+    });
+
+
+    const apl = [[1, 2], ['a']]
+</script>
+
+</html>

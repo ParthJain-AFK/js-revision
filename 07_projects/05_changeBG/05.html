@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>change backGround color</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>random colors</h1>
+    <h2>#FFFFFF</h2>
+    <button id="change">change</button>
+    <button id="stop">dont change</button>
+</body>
+
+
+<script>
+
+
+    function NewColor() {
+        hex = '0123456789ABCDEF'
+        color = '#'
+        for (let i = 0; i < 6; i++) {
+            color += hex[Math.floor(Math.random() * 16)]
+        }
+        return color
+    }
+
+
+    function backGroundChanger() {
+        document.querySelector('h2').innerHTML = `${NewColor()}`
+        document.querySelector('h2').style.color = `${NewColor()}`
+        document.querySelector('body').style.backgroundColor = NewColor()
+
+        console.log(NewColor())
+    }
+
+    let BG
+    document.getElementById('change').addEventListener('click', (e) => {
+
+        if (!BG) {
+            BG = setInterval(backGroundChanger, 2000)
+        }
+
+
+    })
+
+    document.getElementById('stop').addEventListener('click', (e) => {
+        console.log('stoped all time functions');
+        clearInterval(BG)
+        BG = null;
+    })
+</script>
+
+</html>
