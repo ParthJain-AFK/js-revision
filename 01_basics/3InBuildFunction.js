@@ -6,13 +6,13 @@ type of NaN is number
 let value = 23 
 /*
 null , '34' , undefined , '34a' , true
-change 23 to ^^ one of these things
+change 23 to one of these things above
 */
 
  
 const whatIsThis = value; // u can make a variable equals to another variable too
 
-const number = Number(value); // here Number equals to many line of codes, code is used to convert anything to an number..
+const number = Number(value); // here Number equals to many line of codes(function), code is used to convert anything to an number..
 
 console.log(typeof(whatIsThis));
 console.log(typeof number);

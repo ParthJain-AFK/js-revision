@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: #212121; color: wheat;">
+    <table>
+        <h2>XMLHttpRequest code number and the meanig</h2>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>meaning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>UNSENT Client has been created. open() not called yet. </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>OPENED open() has been called.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>HEADERS_RECEIVED send() has been called, and headers and status are available.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>LOADING Downloading; responseText holds partial data.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>DONE The operation is complete.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 id="h3"></h3>
+
+</body>
+
+
+
+<script>
+    const requestUrl = 'https://randomuser.me/api/'
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText)
+            console.log(typeof data);
+
+            const persnolInfo = data.results[0]
+
+            console.log(persnolInfo.gender);
+
+            document.getElementById('h3').innerHTML = `Name :${persnolInfo.name.title}. ${persnolInfo.name.first} ${persnolInfo.name.last}`
+        }
+    }
+    xhr.send();</script>
+
+</html>

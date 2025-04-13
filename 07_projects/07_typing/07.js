@@ -1,4 +1,12 @@
-const wordsStartingWithA = [
+/* 
+create a function which will get a few words from the array below -> display those words inside "text-display" -> create a checker, which will compare the text inside "text-display" to the text written inside "typing-area".. play around with timer, and add things that are missing like eventlistner for "ENTER" or add new button which will stop timer and just give new words , play round with style using js 
+EX 
+    text-display.innerHtml = "hi what no mountain"
+    "typing-area" incase everyting is matching then text-color is white , incase a words is diffrent 
+    "hi wjat no mountain" the word which is wrong will be red
+*/
+
+const words = [
     "abandon", "abate", "aberration", "abhor", "abide", "abjure", "ablution", "abnegation", "abrogate", "abscond",
     "absolve", "abstain", "abstruse", "abundant", "abysmal", "accede", "accolade", "accretion", "acerbic", "acme",
     "acquiesce", "acrimonious", "acumen", "adamant", "adept", "adhere", "admonish", "adroit", "adulation", "adversity",
@@ -275,73 +283,3 @@ const wordsStartingWithA = [
     "zealotism", "zealotry", "zealousness", "zeatin", "zebraic", "zebrass", "zebrassette", "zebrine", "zebroid", "zebrule",
     "zebu", "zecchin", "zed", "zedoary", "zelkova", "zemindar", "zemstvo", "zenana", "zend", "zenithal",
 ];
-
-// use the array above to complete 07.html and then add a button to 06 and 07 .html file. allowing user to navigate between pages
-
-let allPressedKey = [];
-window.addEventListener('keydown', (e) => {
-    e.stopPropagation()
-    e.preventDefault()
-
-    const key = e.key // e.key.toLocaleUpperCase();
-    const keyC = e.code;
-    console.log(e.code, 'e.code');
-    console.log(key, 'e.key');
-
-    let pressedKey;
-    let mappedKey;
-
-    const keyMap = {
-        " ": "Spacebar", // Space key
-        "ControlLeft": "LeftControl",
-        "ControlRight": "RightControl",
-        "CapsLock": "CapsLock",
-        "ShiftLeft": "LeftShift",
-        "ShiftRight": "ShiftRight",
-        "AltLeft": "AltLeft",
-        "AltRight": "AltRight",
-        "Semicolon": "Semicolon",
-    };
-
-
-    if (keyC in keyMap) {
-        mappedKey = keyMap[keyC];
-
-    } else if (keyMap[key]) {
-        mappedKey = keyMap[key];
-
-    } else {
-        mappedKey = keyC;
-
-    }
-
-
-
-    allPressedKey.push(e.key)
-    const showkey = document.querySelector('.keyPressed');
-    showkey.innerHTML = `<p className="history">${allPressedKey.join(' ')}</p>`;
-
-    console.log(showkey);
-
-
-    pressedKey = document.getElementById(mappedKey);
-    if (pressedKey) {
-        pressedKey.style.background = 'magenta';
-        pressedKey.style.color = 'white';
-    }
-
-
-});
-
-
-window.addEventListener('keyup', (e) => {
-    console.log(e.code, 'e.code');
-    console.log(e.key, 'e.key');
-
-    if (e.code === "PrintScreen") {
-        console.log(e.code);
-        document.getElementById('PrintScreen').style.backgroundColor = 'magenta'
-        document.getElementById('PrintScreen').style.color = 'white'
-        e.preventDefault();
-    }
-});

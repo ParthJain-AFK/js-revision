@@ -7,6 +7,8 @@ within the folder there are chapter with number. again lower number equals lower
 
 it is recommanded to read lower level stuff first to get them over it
 
+
+07_projects.07_typing.07.html is an incomplete project.. read note in 07.js 
 ------------------
 
 have better way to explain something? write that down next to it using comment.
