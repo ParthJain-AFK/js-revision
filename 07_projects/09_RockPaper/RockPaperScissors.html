@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        h1 {
+            color: white;
+        }
+
+        body {
+            align-self: center;
+            background-color: black;
+        }
+
+        .main {
+            background-color: rgb(25, 25, 25);
+            margin: 15% auto;
+            width: 50%;
+            border:
+                /*3px solid green;*/
+                none;
+            padding: 10px;
+            text-align: center;
+            color: white;
+            font-family: arial;
+            box-shadow: 0px 5px 25px 1px rgba(255, 255, 255, 0.169);
+            border-radius: 20px;
+        }
+
+        .main:hover {
+            box-shadow: 0px 5px 25px 1px rgba(255, 255, 255, 0.256);
+        }
+
+        h2,
+        h3,
+        h4 {
+            display: inline;
+            font-size: medium;
+            margin: 20px;
+        }
+
+        p.RPS {
+            color: rgb(255, 102, 6);
+            font-size: 40px;
+            font-weight: bolder;
+            display: inline;
+            margin: 0;
+        }
+
+        .rock,
+        .paper,
+        .scissors {
+            margin: 10px;
+
+            vertical-align: middle;
+            justify-content: center;
+            align-items: center;
+
+            color: wheat;
+            background-color: black;
+            border: solid;
+            border-color: rgb(234, 53, 53);
+            border-width: 2px;
+            border-radius: 50%;
+
+            height: 100px;
+            width: 100px;
+            padding: 0;
+        }
+
+        .img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .js-result {
+            font-weight: bolder;
+            color: yellow;
+            font-size: larger;
+        }
+
+        .js-choose {
+            color: rgb(249, 105, 129);
+            font-size: small;
+        }
+
+        .js-score {
+            font-family: arial;
+            font-weight: 900;
+            color: rgb(173, 124, 1);
+        }
+
+        .reset,
+        .js-Autoplay {
+            background-color: rgb(25, 25, 25);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 35px;
+            width: 130px;
+        }
+
+        .reset:hover,
+        .js-Autoplay:hover {
+            background-color: rgb(20, 20, 20);
+        }
+    </style>
+
+    r
+
+</head>
+
+<body>
+    <h1>understand how this works..</h1>
+    <div class="main">
+        <div>
+            <h1>u can press r,p,s on keyboard to play too</h1>
+            <h2>r = rock </h2>
+            <h3>p = paper</h3>
+            <h4>s = scissors</h4>
+        </div>
+        <div class="button">
+
+            <p title="R-P-S" class="RPS">Rock Paper Scissors</p>
+
+            <!---->
+            <div title="Rock" class="button">
+                <button class="rock"><img class=" img" src="rock.png" alt="didnt load"></button>
+
+                <button title="Paper" class="paper"><img class="img" src="paper.png" alt="didnt load"></button>
+
+                <button title="Scissors" class="scissors"><img class="img" src="scissors.png" alt="didnt load"></button>
+            </div>
+        </div>
+
+        <div>
+            <p title="result" class="js-result">----</p>
+
+            <p title="last chosen" class="js-choose">you <span class="js-uCh">chose</span> - computer <span
+                    class="js-pcCh">chose</span></p>
+
+            <p title="score" class="js-score">wins: 0, losses: 0, Ties: 0,</p>
+        </div>
+
+        <div>
+            <button title="will reset everything" class="reset" onclick="allNum.newScoreBord()">reset score</button>
+            <button title="will auto play" class="js-Autoplay" onclick="autoplay()">Auto Play</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        const allNum = {
+            iWin: 0,
+            uWin: 0,
+            tie: 0,
+
+            newScoreBord: function () {
+                this.iWin = 0;
+                this.tie = 0;
+                this.uWin = 0;
+                console.log('scoreBord was reset');
+
+                // Reset stored score
+                localStorage.setItem('score', JSON.stringify(allNum))
+
+                document.querySelector('.js-result').innerHTML = '----'
+                localStorage.setItem('result', document.querySelector('.js-result').innerHTML);
+
+                const whatChose = document.querySelector('.js-uCh')
+                whatChose.innerHTML = 'chose'
+                const Whatchose = document.querySelector('.js-pcCh')
+                Whatchose.innerHTML = 'chose'
+
+                updateScoreDisplay();
+            }
+        };
+
+        function updateScoreDisplay() {
+            console.log('update');
+
+            const scoreDisplay = document.querySelector('.js-score');
+            scoreDisplay.innerHTML = `wins ${allNum.iWin}, losses ${allNum.uWin}, ties ${allNum.tie}`
+
+
+
+        }
+
+        //Save initial score to localStorage
+        //localStorage.setItem('score', JSON.stringify(allNum))
+
+        window.onload = function () {
+            //localStorage.setItem('choose', JSON.stringify({ user: pChoise, computer: chosse }));
+            const savedC = JSON.parse(localStorage.getItem('choose'))
+            if (savedC) {
+                document.querySelector('.js-uCh').innerHTML = savedC.user
+                document.querySelector('.js-pcCh').innerHTML = savedC.computer
+
+            }
+
+            const savedScore = JSON.parse(localStorage.getItem('score'));
+            if (savedScore) {
+                console.log('teeest');
+
+                allNum.iWin = savedScore.iWin
+                allNum.uWin = savedScore.uWin
+                allNum.tie = savedScore.tie
+            }
+            updateScoreDisplay()
+            const getResult = localStorage.getItem('result');
+            if (getResult) {
+                document.querySelector('.js-result').innerHTML = getResult
+            }
+        }
+
+
+
+
+
+
+        function reandomGen() {
+            let randomNum = Math.random();
+            let chosse;
+            if (randomNum >= 0 && randomNum <= 1 / 3) {
+                chosse = 'rock';
+            } else if (randomNum > 1 / 3 && randomNum <= 2 / 3) {
+                chosse = 'paper';
+            } else if (randomNum > 2 / 3 && randomNum <= 1) {
+                chosse = 'scissors';
+            }
+            console.log(`computer chose ${chosse}`);
+            return chosse;
+        }
+
+
+        document.body.addEventListener('keydown', (event) => {
+            if (event.key === 'r' || event.key === 'R') {
+                play('rock')
+            } else if (event.key === 'p' || event.key === 'P') {
+                play('paper')
+            } else if (event.key === 's' || event.key === 'S') {
+                play('scissors')
+            }
+        })
+
+
+        document.querySelector('.rock').addEventListener('click', () => {
+            play('rock')
+        })
+        document.querySelector('.paper').addEventListener('click', () => {
+            play('paper')
+        })
+        document.querySelector('.scissors').addEventListener('click', () => {
+            play('scissors')
+        })
+        function play(pChoise) {
+            chosse = reandomGen();
+
+            const result = document.querySelector('.js-result')//.innerHTML
+            const uch = document.querySelector('.js-uCh')
+            const pcCh = document.querySelector('.js-pcCh')
+
+            if (pChoise === chosse) {
+                // alert('its a tie')
+                allNum.tie++
+                result.innerHTML = 'its a tie'
+
+            } else if
+                ((pChoise === 'rock') && (chosse === 'paper') // checking all the combinaction in which bot wins using || 
+                || (pChoise === 'paper' && chosse === 'scissors')
+                || (pChoise === 'scissors' && chosse === 'rock')) {
+                // alert('hahhaha i WIN, losser')
+                allNum.iWin++
+                result.innerHTML = 'i win'
+
+            } else {
+                // alert('dam you win lucky')
+                allNum.uWin++
+                result.innerHTML = 'u win'
+
+            }
+
+            uch.innerHTML = pChoise;
+            pcCh.innerHTML = chosse;
+
+            const _chose = document.querySelector('.js-choose')
+
+            localStorage.setItem('choose', JSON.stringify({ user: pChoise, computer: chosse }));
+
+
+            localStorage.setItem('score', JSON.stringify(allNum));
+            localStorage.setItem('result', result.innerHTML);
+            updateScoreDisplay();
+            chosse = '';
+        }
+
+        let isAuto = false;
+        let autoIntervalID;
+        function autoplay() {
+            const buttonText = document.querySelector('.js-Autoplay')
+            if (!isAuto) {
+
+                autoIntervalID = setInterval(() => {
+                    const playerMover = reandomGen()
+                    play(playerMover)
+                }, 1000)
+                isAuto = true
+                buttonText.innerHTML = 'stop auto play'
+            } else {
+                clearInterval(autoIntervalID)
+                isAuto = false
+                buttonText.innerHTML = 'auto play'
+            }
+        }
+
+    </script>
+</body>
+
+</html>

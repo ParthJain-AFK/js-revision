@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coinFlip</title>
+    <script>
+        // function Name(name) {
+        //     return name
+        // }
+        // const name = Name('parth')
+        // let hour = 21
+
+        // if (hour <= 6 && hour >= 12) {
+        //     console.log(`good morning ${name}`);
+        // } else if (hour <= 13 && hour >= 17) {
+        //     console.log(`good afternoon ${name}`);
+        // } else {
+        //     console.log(`good night ${name}`);
+
+        // }
+
+        // function Age(AGE) { return AGE }
+        // const age = Age(9)
+        // const holiday = true;
+        // if ((age <= 6 || age >= 65) && holiday) {
+        //     console.log(`${name} age of ${age} can resive the discount`);
+        // } else {
+        //     console.log(`${name} age of ${age} can not resive the discount`);
+        // }
+
+
+        let win = 0;
+        let loss = 0;
+
+        const savedWin = localStorage.getItem('win')
+        if (savedWin !== null) {
+            win = parseInt(savedWin, 10)
+        }
+        const savedLoss = localStorage.getItem('loss')
+        if (savedLoss !== null) {
+            loss = parseInt(savedLoss, 10)
+        }
+
+        function flip(UGuess) {
+            const randNum = Math.random()
+            // if (randNum < 0.5) {
+            //     console.log('tail');
+            // }
+            const computer = randNum >= .5 ? 'tail' : 'head';
+
+            const result = UGuess === computer ? 'you win!' : 'you lose!'
+
+            console.log(`your guess was ${UGuess} and result was ${computer} so ${result}`);
+
+            if (result === 'you win!') { win++ } else { loss++ }
+            localStorage.setItem('win', win)
+            localStorage.setItem('loss', loss)
+        }
+
+        function reset() {
+            win = 0;
+            loss = 0;
+            console.log(`Wins: ${win}, Losses: ${loss}`);
+            localStorage.setItem('win', win)
+            localStorage.setItem('loss', loss)
+
+        }
+
+        function scoreBord() {
+            console.log(`Wins: ${win}, Losses: ${loss}`);
+        }
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <h2>see console.log its happing there.. add css will you?</h2>
+    <button onclick="
+        flip('head');
+        ">heads</button>
+
+    <button onclick="
+        flip('tail');
+        ">tail</button>
+    <button onclick="
+        scoreBord()
+    ">scoreBord</button>
+    <button onclick="
+        reset()
+    ">reset score
+    </button>
+</body>
+
+</html>

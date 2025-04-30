@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONVERTER</title>
+    <style>
+        p {
+            color: blue;
+            font-size: x-large;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body style="background-color: blueviolet;">
+    <div>
+        <p>didnt put input here u have to go into the code and change its value 'c' and 'f'</p>
+        <button onclick="turn2Fer(86,'c')">temp</button>
+        <hr>
+        <p>converts distance|length from 'm, km, ft' to 'm, km, ft'</p>
+        <button onclick="convertL(1,'m','km')">trunDIS</button>
+    </div>
+    <script>
+
+        function turn2Fer(tem, to) {
+            if (to == 'f') {
+                console.log(`${(tem * 9 / 5) + 32} Fahrenheit`);
+            } else if (to == 'c') {
+                console.log(`${(tem - 32) * 5 / 9} celsisu`);
+            }
+            return;
+        }
+
+        function convertL(length, from, to) {
+            if (from === to) {
+                console.log(`${length}`);
+            }
+            else if (from === 'm' && to === 'km') {
+                console.log(`${length * 1.6} km`);
+            }
+            else if (from === 'km' && to === 'm') {
+                console.log(`${length / 1.6} miles`);
+            }
+            else if (from === 'm' && to === 'ft') {
+                console.log(`${length * 5280} ft`);
+            }
+            else if (from === 'km' && to === 'ft') {
+                console.log(`${length * 3281} ft`);
+            }
+            else if (from === 'ft' && to === 'km') {
+                console.log(`${length / 3281} km`);
+            }
+            else if (from === 'ft' && to === 'm') {
+                console.log(`${length / 5280} m`);
+            }
+            else if (from, length, to !== 'ft' || 'km' || 'm') {
+                console.log(`'length' must be num - ${length}  , 'from' and 'to'  must be one of these 'ft' , 'km' , 'm' - ${from} ${to}`);
+            } else if (from === to) {
+                console.log(`invalid ${from}`);
+            }
+
+
+        }
+
+    </script>
+</body>
+
+</html>

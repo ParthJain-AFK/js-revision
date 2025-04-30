@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to do list</title>
+    <style>
+        h1 {
+            background-color: aqua;
+        }
+
+        .add {
+            background-color: greenyellow;
+            color: rgb(26, 26, 26);
+            width: 60px;
+            height: auto;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+
+        }
+
+        .add:hover {
+            background-color: rgb(153, 255, 0);
+            box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.163);
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            width: 70px;
+            height: auto;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+        }
+
+        button:hover {
+            background-color: rgb(173, 0, 0);
+            box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.163);
+
+        }
+
+        .js-todo-list,
+        .input {
+            display: grid;
+            grid-template-columns: 200px 150px 100px;
+            /* padding: 5px 7px; */
+            column-gap: 10px;
+            row-gap: 10px;
+        }
+
+        .input {
+            margin-bottom: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <h2>you goal is to make it so that in case if i add an empty thing it dosent add <br> and when i do add things date
+        input too is set to empty</h2>
+    <div>
+        <h1>ToDo List</h1>
+
+        <div class="input">
+            <input type="text" placeholder="ToDo name" class="js-ToDo" onkeydown="enterInput(event) ">
+
+            <input type="date" class="js-ToDate">
+
+            <button class="add">Add</button>
+        </div>
+
+        <div class="js-todo-list"></div>
+
+
+    </div>
+    <script>
+        // an global variable which will have an exaple to do
+        const todoList = [{ name: 'xxxx ', date: ' 00,00,2024' }, { name: 'yyyy ', date: ' 00,00,2024' }]
+
+        renderTodoList()
+
+        // then the add button is called it called todoAdd
+        document.querySelector('.add').addEventListener('click', () => {
+            todoAdd()
+        })
+
+
+        // it just takes input value from both input property of html
+        function todoAdd() {
+
+            const inputElement = document.querySelector('.js-ToDo')
+            const name = inputElement.value;
+            const inputDate = document.querySelector('.js-ToDate')
+            const date = inputDate.value;
+
+            // and then adds that to todoList
+            todoList.push(
+                // {name: name, date: date}
+                { name, date }
+            )
+
+            // and it resets the current value of input box to empty
+            inputElement.value = '';
+
+            renderTodoList()
+
+        }
+
+
+        // first we make an empty string then we run a loop from which add new html written in `` aka a string after that we set the string as an innerHTML of an empty property
+        function renderTodoList() {
+            todoListHTML = ''
+
+            todoList.forEach((todoObjcet, index) => {
+                const { name, date } = todoObjcet
+                const html = `
+                    <div>${name}</div>
+                    <div>${date}</div>
+                    <button class="delete"
+                    ">delete</button>`
+                todoListHTML += html;
+            })
+            document.querySelector('.js-todo-list').innerHTML = todoListHTML;
+
+
+            // querySelectorAll dose what it says that is selecting all with delete class then we do for each and get just remove that thing only.
+            document.querySelectorAll('.delete')
+                .forEach((deleteButton, index) => {
+                    deleteButton.addEventListener('click', () => {
+                        todoList.splice(index, 1);
+                        renderTodoList();
+                    })
+                });
+
+        }
+
+    </script>
+</body>
+
+</html>

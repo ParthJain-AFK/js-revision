@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .YSB {
+            font-weight: 500;
+        }
+
+        .js-sub-b {
+            background-color: rgba(24, 24, 24, 0.9);
+            color: white;
+            padding: 4px;
+            width: 100px;
+            padding-left: 0;
+            padding-right: 0;
+            border: none;
+            border-radius: 30px;
+        }
+
+        .js-sub-b:hover {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .is-subed {
+            background-color: red;
+        }
+
+        .is-subed:hover {
+            background-color: rgb(135, 0, 0);
+        }
+
+        .js-input {
+            height: 30px;
+            padding-left: 10px;
+            width: 200px;
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+        }
+
+        .js-input::placeholder {
+            color: gray;
+            font-weight: lighter;
+            font-size: small;
+        }
+
+        .cal {
+            background-color: green;
+            border: none;
+            height: 32px;
+            color: white;
+            width: 100px;
+            box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .cal:hover {
+            background-color: rgb(41, 68, 0);
+            box-shadow: 0px 2px 6px 1px rgba(0, 128, 0, 0.2);
+        }
+
+        /* .js-is-toggled {
+        background-color: black;
+        color: white;
+      }
+      
+      .js-not-toggled {
+        background-color: pink;
+        color: black;
+      } */
+
+        .is-toggled {
+            background-color: black;
+            color: white;
+        }
+    </style>
+
+    <script>
+
+        // changes the innerHTML by changing html and chanes background color by adding and removing class
+        function subscribe() {
+            const isSUB = document.querySelector('.js-sub-b')
+            // isSUB.innerHTML = isSUB.innerHTML === 'Subscribe' ? 'Subscribed' : 'Subscribe'
+            if (isSUB.innerHTML === 'Subscribe') {
+                isSUB.innerHTML = 'Subscribed'
+                isSUB.classList.add('is-subed')
+            } else {
+                isSUB.innerHTML = 'Subscribe'
+                isSUB.classList.remove('is-subed')
+            }
+        }
+
+        // adds 10 to the input value if its more than 40 - and prints total value..
+        // it can take the input using ENTER(127 line) and and by clicking the calculate button
+        function add10() {
+            let inputE = document.querySelector('.js-input').value
+            console.log(inputE);
+            inputE = parseInt(inputE)
+            let total;
+            let isTotal = document.querySelector('.js-isTotal')
+
+            if (isNaN(inputE)) {
+                isTotal.innerHTML = 'input must be a number'
+                console.log('1');
+
+            } else if (inputE < 0 || inputE == 0) {
+                total = inputE
+                isTotal.innerHTML = 'Error: cost can  not be 0 or less then 0'
+
+            } else if (inputE >= 40) {
+                total = inputE
+                isTotal.innerHTML = `total is ${total}$`
+                console.log('2');
+
+            } else if (inputE <= 40) {
+                total = inputE + 10
+                isTotal.innerHTML = `total is ${total}$`
+                console.log('3');
+
+            }
+        }
+
+
+        // makes it so that when ENTER is pressed on keyboard it runs the function add10() u can also make it do things like change the color of somthing or to change innerHTML or to log somthing
+        function enterInput(event) {
+            if (event.key === 'Enter') {
+                add10();
+            }
+        }
+
+
+        function test() {
+            let test = document.querySelector('.js-test-button')
+            test1 = test.classList.contains('js-test-button') // this dosnt not
+            test2 = test.classList.contains('.js-test-button') // this is
+
+            console.log(`${test1} not `);
+
+            console.log(`${test2} it has `);
+
+        }
+
+
+
+        /*
+        next three function (gaming , music , tech )
+        they do one simple thing and that is to change background color and to reset the background color of other button by adding and removing the class to the pressed button
+        */
+
+        function gaming() {
+            // let ga = document.querySelector('.js-button')
+
+            // if (!ga.classList.contains('is-toggled')) { // the mistake is that we need to check the new (one we are adding) class if we have that or not instead of checking if we have the main class "!" is very importand idk why tho 
+            // i think its becasue we need to check that if we have is-toggled class and by default we dont so '!' without this we are runing the else code that is .remove but why adding '!' we are checking that if we dont have is-toggled then run the code and by default we dont ahve so we run if code
+            //     ga.classList.add('is-toggled')
+            //     // ga.classList.remove('js-is-toggled')
+            //     console.log('worked');
+            // }
+            // else {
+            //     // ga.classList.add('js-is-toggled')
+            //     ga.classList.remove('is-toggled')
+            //     console.log('no ');
+            // }
+
+
+
+            const button = document.querySelector('.js-game');
+
+            if (!button.classList.contains('is-toggled')) {
+                button.classList.add('is-toggled');
+
+                const music = document.querySelector('.js-music')
+                music.classList.remove('is-toggled')
+                const game = document.querySelector('.js-game')
+                music.classList.remove('is-toggled')
+
+
+                console.log('k');
+
+            } else {
+                button.classList.remove('is-toggled');
+                console.log('n');
+
+            }
+        }
+
+        function music() {
+            const button = document.querySelector('.js-music')
+            if (!button.classList.contains('is-toggled')) {
+                button.classList.add('is-toggled')
+
+                // ~~~
+                const music = document.querySelector('.js-music')
+                music.classList.remove('is-toggled')
+                const game = document.querySelector('.js-game')
+                music.classList.remove('is-toggled')
+
+                console.log('k');
+            } else {
+                button.classList.remove('is-toggled')
+                console.log('n');
+
+            }
+        }
+
+        function tech() {
+            const button = document.querySelector('.js-tech')
+
+
+            if (!button.classList.contains('is-toggled')) {
+                button.classList.add('is-toggled')
+
+                const music = document.querySelector('.js-music')
+                music.classList.remove('is-toggled')
+                const game = document.querySelector('.js-game')
+                music.classList.remove('is-toggled')
+
+                console.log('k');
+
+
+            } else {
+                button.classList.remove('is-toggled')
+                console.log('n');
+
+            }
+        }
+
+        /* 
+         these three function are contain codes which is called in the above function. they are made so that the code donsnt become repatative
+        */
+
+        function toggle(buttonType) {
+            const buttons = {
+                game: document.querySelector('.js-game'),
+                music: document.querySelector('.js-music'),
+                tech: document.querySelector('.js-tech')
+            };
+
+            // Remove 'is-toggled' class from all buttons
+            Object.values(buttons).forEach(btn => btn.classList.remove('is-toggled'));
+
+            // Add 'is-toggled' class to the clicked button
+            buttons[buttonType].classList.add('is-toggled');
+
+            console.log(`${buttonType} button toggled`);
+        }
+
+        function toggle(whichOne) {
+            const button = document.querySelector(whichOne);
+
+            if (!button.classList.contains('is-toggled')) {
+                lastbutton();
+                button.classList.add('is-toggled')
+
+                console.log('w');
+            } else {
+                button.classList.remove('is-toggled')
+            }
+        }
+
+        function lastbutton() {
+            const prev = document.querySelector('.is-toggled')
+            if (prev) {
+                prev.classList.remove('is-toggled')
+                console.log('p');
+
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <div>
+        <p class="YSB">YouTube Subscribe Button</p>
+
+        <button class="js-sub-b" onclick="subscribe()">
+            Subscribe
+        </button>
+    </div>
+
+    <hr>
+
+    <hr>
+
+    <div>
+        <p>Amazon Shipping Calculator</p>
+        <p>orders under $40 will cost $10 shipping</p>
+        <p>orders over $40 will be free shipping</p>
+
+        <input class="js-input" type="text" placeholder="cost of order"
+            onkeydown="enterInput(event /*this is an inbuild function */) ">
+
+        <button class="cal" onclick="add10()">Calculator</button>
+        <p class="js-error"></p>
+        <p class="js-isTotal">total = </p>
+    </div>
+    <hr>
+    <button class="js-test-button" onclick="test()">test</button>
+    <hr>
+    <div>
+        <!-- <button class="js-game" onclick="gaming()">gaming</button>
+        <button class="js-music" onclick="music()">music</button>
+        <button class="js-tech" onclick="tech()">tech</button> -->
+        <button class="js-button" onclick="toggle('.js-button')">gaming</button>
+        <button class="js-button1" onclick="toggle('.js-button1')">music</button>
+        <button class="js-button2" onclick="toggle('.js-button2')">tech</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>u order things by clicking button and the it adds to the bill</title>
+    <script>
+        let bill = 0;
+        let texBill = 0;
+        const coffey = 5;
+        const baggle = 3;
+        const soup = 9;
+        let final = 0;
+
+        function bi() {
+            document.getElementById('final').innerHTML = `with tax bill is ' ${final = (texBill = bill * 0.1) + bill}$ '`
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>u order things by clicking button and the it adds to the bill</h1>
+    <hr>
+    <p>Cart quontaity</p>
+
+    <button onclick=" console.log(` added to bill '${bill += coffey}$'`);">
+        coffey
+    </button>
+
+    <button onclick="console.log(` added to bill '${bill += baggle}$'`);">
+        baggle
+    </button>
+
+    <button onclick="console.log(` added to bill '${bill += soup}$'`);">
+        soup
+    </button>
+
+    <button onclick="console.log(`total without tax is '${bill}$'`);">
+        total
+    </button>
+
+    <button onclick="bi()">
+        bill + tax
+    </button>
+    <span id="final"></span>
+    <button
+        onclick="console.log(`emptyed the cart '${final}$' set to '0$' `); texBill = 0; bill = 0; document.getElementById('final').innerHTML = ''">
+        check Out
+    </button>
+
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP</title>
+    <style>
+        .js-p {
+            transition: opacity 0.5s ease-in-out;
+            /* Smooth transition for opacity */
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>basic html manipulation.. for example an confimation message</h1>
+    <button onclick="add()">add to cart</button>
+    <p class="js-p"></p>
+    <button class="js-load" onclick="load()">load</button>
+    <button onclick="titleAdd(true)">Add1</button>
+    <button onclick="titleAdd(false)">Sub1</button>
+
+
+
+    <script>
+        let message = 0;
+        let timeoutId;
+        window.onload = function () { setTimeout(function () { titleAdd(true); }, 1000); };
+
+
+        function titleAdd(wtf) {
+            // Change the title to show the new message count after 3 seconds
+            if (wtf) {
+                message++
+                if (message > 1) {
+                    window.alert("new message");
+                }
+            } else {
+                message--
+            }
+            document.title = `(${message}) New Message`;
+            setTimeout(function titleReload() {
+
+                if (timeoutId) { clearTimeout(timeoutId); }
+                // Set a timeout to change the title back after 2 seconds
+                document.title = `APP`
+            }, 1000);
+        };
+
+
+
+        function add() {
+            let pOld = document.querySelector('.js-p')
+            pOld.innerHTML = 'added';
+            setTimeout(function () {
+                console.log('okay');
+                pOld.innerHTML = '';
+            }, 2000)
+
+        }
+
+        /*function addAI() {
+            let pOld = document.querySelector('.js-p');
+            pOld.innerHTML = 'added';
+            pOld.classList.remove("fade-out"); // Ensure it's not faded initially
+
+            setTimeout(function () {
+                pOld.classList.add("fade-out"); // Trigger the fade-out effect
+                setTimeout(function () {
+                    pOld.innerHTML = ''; // Clear content after fade-out
+                    pOld.classList.remove("fade-out"); // Reset for next use
+                }, 500); // Match this timeout with the CSS transition duration
+            }, 2000); // Delay before starting fade-out
+        } */
+
+        function load() {
+
+            let loadO = document.querySelector('.js-load')
+            loadO.innerHTML = 'loading'
+            setInterval(function () { loadO.innerHTML = 'finshed!!' }, 1000)
+        }
+    </script>
+</body>
+
+</html>

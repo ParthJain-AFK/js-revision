@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- eval is being used here. i dont know what this is but i know that in takes strings which contains maths and then it converts it into math from string and solve it -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .js-sum {
+            max-width: 170px;
+            /* background-color: pink; */
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            display: block;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: left;
+            direction: rtl;
+        }
+
+        .num {
+            background-color: rgba(47, 47, 47, 0.722);
+            color: white;
+
+            font-family: arial;
+            font-size: large;
+
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .sum {
+            background-color: orange;
+            border: none;
+            color: white;
+
+            font-family: arial;
+            font-size: large;
+
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .clear {
+            background-color: rgba(47, 47, 47, 0.722);
+            color: white;
+
+            font-family: arial;
+            font-size: 10px;
+
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    </style>
+    <script>
+        let ans = '';
+
+
+        function cal(input) {
+
+            const rounded = Math.round(parseInt(ans += input))
+            console.log(rounded);
+
+
+            localStorage.setItem('his', JSON.stringify(rounded))
+            show()
+
+        }
+
+
+        const history = JSON.parse(localStorage.getItem('his'))
+        if (history) {
+            ans = history
+        }
+        function reset() {
+            ans = ''
+            localStorage.removeItem('his', JSON.stringify(ans))
+            show()
+
+        }
+
+        function show() {
+            const here = document.querySelector('.js-sum');
+            here.innerHTML = ans || `&nbsp;`
+        }
+
+        function sum() {
+
+            ans = (eval(ans))
+            show()
+
+        }
+        // document.addEventListener('keydown', function (event) {
+        //     if (event.key === 'Enter') {
+        //         sum();
+        //     } else {
+        //         cal(event.key);
+        //     }
+        // })
+    </script>
+</head>
+
+<body>
+
+    <!-- <input class="js-input" type="text" placeholder="cost of order"
+        onkeydown="enterInput(event /*this is an inbuild function */) "> -->
+
+    <p class="js-sum">&nbsp;</p>
+    <p>
+        <button class="num" onclick="cal('1');">
+            1
+        </button>
+
+        <button class="num" onclick="cal('2');">
+            2
+        </button>
+
+        <button class="num" onclick="cal('3');">
+            3
+        </button>
+
+
+        <button class="sum" onclick="cal(' + ')">
+            +
+        </button>
+    </p>
+    <p>
+        <button class="num" onclick="cal('4')">
+            4
+        </button>
+
+        <button class="num" onclick="cal('5')">
+            5
+        </button>
+
+        <button class="num" onclick="cal('6');">
+            6
+        </button>
+
+        <button class="sum" onclick="cal(' - ');">
+            -
+        </button>
+    </p>
+    <p>
+        <button class="num" onclick="cal('7');">
+            7
+        </button>
+
+        <button class="num" onclick="cal('8');">
+            8
+        </button>
+
+        <button class="num" onclick="cal('9')">
+            9
+        </button>
+
+        <button class="sum" onclick="cal(' * ');">
+            *
+        </button>
+    </p>
+    <p>
+        <button class="num" onclick="cal('0');">
+            0
+        </button>
+
+        <button class="num" onclick="cal('.');">
+            .
+        </button>
+
+        <button class="num" onclick="sum()">
+            =
+        </button>
+
+        <button class="sum" onclick="cal(' / ')">/</button>
+
+    <div>
+        <button class="clear" ; onclick="reset()">
+            clear
+        </button>
+    </div>
+    </p>
+
+</body>
+
+</html>
